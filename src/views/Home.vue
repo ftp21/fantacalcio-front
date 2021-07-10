@@ -31,7 +31,6 @@ import InfoGiocatore from "../components/InfoGiocatore.vue";
 import Mescola from "../components/Mescola.vue";
 import UltimoAcquisto from "../components/UltimoAcquisto.vue";
 import VisualizzaCrediti from "../components/VisualizzaCrediti.vue";
-import {mapGetters} from 'vuex';
 import store from '../store';
 
 export default {
@@ -46,17 +45,22 @@ export default {
 
   
   },
-  data:{
-    stato: "",
-    store: store,
-
+  data(){
+    return {
+      stato: "",
+      store: store,
+    }
   },
 	computed: {
-      ...mapGetters({status: 'getStatus'}),
+    initial_config: function () {
+      return this.$store.getters.getInit;
+    },
 	},
 	mounted() {
     this.$store.dispatch('setSquadre');
-
+    // if(this.initial_config==1){
+    //   window.location='/impostazioni'
+    // }
 
 	},
   created() {

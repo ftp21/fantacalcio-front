@@ -13,7 +13,7 @@
               <b-table ref="table" :items="svincolati.portieri" :fields="fields"  :filter="filter" striped>
                 <template v-slot:cell(acquista)="data">
                   <!--                  <b-button variant="danger" @click="deleteItem(data.item.id)">Delete</b-button>-->
-                  <p><b-button variant="danger"  v-b-modal.modal-1 @click="setModal(data.item.id)">Acquista</b-button></p>
+                  <p><b-button variant="danger"  v-b-modal.modal-1 @click="setModal(data.item.id,data.item.nome_giocatore)">Acquista</b-button></p>
                 </template>
               </b-table>
             </b-card-text>
@@ -23,7 +23,7 @@
               <b-table :items="svincolati.difensori" :fields="fields"  :filter="filter">
                 <template v-slot:cell(acquista)="data">
                   <!--                  <b-button variant="danger" @click="deleteItem(data.item.id)">Delete</b-button>-->
-                  <b-button variant="danger"  v-b-modal.modal-1 @click="setModal(data.item.id)">Acquista</b-button>
+                  <b-button variant="danger"  v-b-modal.modal-1 @click="setModal(data.item.id,data.item.nome_giocatore)">Acquista</b-button>
                 </template>
               </b-table>
               <!--              <b-table :items="svincolati.difensori" :fields="fields"></b-table>-->
@@ -34,7 +34,7 @@
               <b-table :items="svincolati.centrocampisti" :fields="fields"  :filter="filter">
                 <template v-slot:cell(acquista)="data">
                   <!--                  <b-button variant="danger" @click="deleteItem(data.item.id)">Delete</b-button>-->
-                  <b-button variant="danger"  v-b-modal.modal-1 @click="setModal(data.item.id)">Acquista</b-button>
+                  <b-button variant="danger"  v-b-modal.modal-1 @click="setModal(data.item.id,data.item.nome_giocatore)">Acquista</b-button>
                 </template>
               </b-table>
               <!--              <b-table :items="svincolati.centrocampisti" :fields="fields"></b-table>-->
@@ -45,7 +45,8 @@
               <b-table :items="svincolati.attaccanti" :fields="fields"  :filter="filter">
                 <template v-slot:cell(acquista)="data">
                   <!--                  <b-button variant="danger" @click="deleteItem(data.item.id)">Delete</b-button>-->
-                  <b-button variant="danger"  v-b-modal.modal-1 @click="setModal(data.item.id)">Acquista</b-button>
+<!--                  <p>{{// data.item.nome_giocatore}}</p>-->
+                  <b-button variant="danger"  v-b-modal.modal-1 @click="setModal(data.item.id,data.item.nome_giocatore)">Acquista</b-button>
                 </template>
               </b-table>
               <!--              <b-table :items="svincolati.attaccanti" :fields="fields"></b-table>-->
@@ -56,7 +57,7 @@
       <b-modal id="modal-1" title="BootstrapVue" @ok="acquista(id_giocatore_acquisto)" @cancel="id_giocatore_acquisto=0">
         <p class="my-4">Il giocatore verrà acquistato dalla squadra: </p>
         <b-form-select v-model="squadra_acquisto">
-          <option v-for="squadra in squadre" :key="squadra.id" v-bind:value='squadra.id' >{{squadra.nome}}</option>
+          <option v-for="squadra in squadre" v-bind:value="{ id: squadra.id, nome: squadra.nome }" >{{squadra.nome}}</option>
         </b-form-select>
         <p>a questo prezzo</p>
         <b-form-input v-model="prezzo_acquisto" placeholder="Prezzo d'acquisto"></b-form-input>
@@ -91,17 +92,19 @@ export default {
         //"campioncino"
       ],
 
-      id_giocatore_acquisto: 0
+      id_giocatore_acquisto: 0,
+      nome_giocatore_acquisto: ""
     };
   },
   methods:{
     acquista:function (){
 
       axios.post(`${process.env.VUE_APP_API}mercato/acquista/${this.id_giocatore_acquisto}`,
-          `id_squadra=${this.squadra_acquisto}&crediti=${this.prezzo_acquisto}`).then(response=>{
-        this.$store.dispatch('setStatus');
-        this.getSvincolati();
+          `id_squadra=${this.squadra_acquisto.id}&crediti=${this.prezzo_acquisto}`).then(function (){
         this.showToast();
+        this.$store.dispatch('setStatus');
+        this.getSvincolati()
+
 
       }).catch(error=>{
         //console.log(error.response.data.detail)
@@ -109,7 +112,7 @@ export default {
       });
     },
     showToast: function (){
-      this.$bvToast.toast('Il giocatore X è stato acquistato da y a z crediti', {
+      this.$bvToast.toast('Il giocatore '+this.nome_giocatore_acquisto+' è stato acquistato a '+this.prezzo_acquisto+' crediti da '+this.squadra_acquisto.nome, {
         autoHideDelay: 2000,
         title: 'Giocatore acquistato correttamente',
         headerClass: 'header-toast',
@@ -124,8 +127,9 @@ export default {
         variant: 'danger'
       })
     },
-    setModal(id){
+    setModal(id,nome){
       this.id_giocatore_acquisto=id;
+      this.nome_giocatore_acquisto=nome;
     },
     getSvincolati(){
       axios.get(`${process.env.VUE_APP_API}svincolati`).then(response=>{

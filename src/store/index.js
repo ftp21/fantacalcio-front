@@ -13,7 +13,8 @@ export default new Vuex.Store({
     estratto: {},
     ultimo_acquisto: {},
     info: {},
-    squadre: {}
+    squadre: {},
+    initial_config:1
   },
   mutations: {
     setStatus(state, payload){
@@ -22,6 +23,11 @@ export default new Vuex.Store({
       state.estratto= payload.estratto;
       state.ultimo_acquisto= payload.ultimo_acquisto;
       state.info=payload.info;
+      // if(state.squadre.length()==0){
+      //   state.initial_config=0;
+      // }else{
+      //   state.initial_config=1
+      // }
     },
     setEstratto(state,payload){
       state.estratto=payload
@@ -65,5 +71,6 @@ export default new Vuex.Store({
     getIdEstratto(state){
       return state.estratto.id
     },
+    getInit (state) { return state.initial_config }
   },
 })

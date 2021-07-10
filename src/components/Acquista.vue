@@ -8,9 +8,11 @@
       <b-card-text>
         <b-row>
           <b-col sm="12">
-            <label name="squadra">Squadra</label>
-            <b-form-select v-model="squadra_id">
-              <option v-for="squadra in squadre" :key="squadra.id" v-bind:value='squadra.id' >{{squadra.nome}}</option>
+            <label>Squadra</label>
+            <b-form-select v-model="squadra_selezionata">
+<!--              <option v-for="squadra in squadre" :key="squadra.id" v-bind:value=squadra.id v-model="nome_squadra_acquisto">{{squadra.nome}}</option>-->
+
+              <option v-for="squadra in squadre" v-bind:value="{ id: squadra.id, nome: squadra.nome }">{{squadra.nome}}</option>
             </b-form-select>
 
             <label>Crediti</label>
@@ -30,25 +32,24 @@ export default {
   data(){
     return{
         crediti_acquisto: 0,
-        squadra_id: 0,
+        squadra_selezionata: ""
 
       }
   },
   methods: {
     acquista:function (){
-
       axios.post(`${process.env.VUE_APP_API}mercato/acquista/${this.id_giocatore}`,
-          `id_squadra=${this.squadra_id}&crediti=${this.crediti_acquisto}`).then(response=>{
-            this.$store.dispatch('setStatus');
+          `id_squadra=${this.squadra_selezionata.id}&crediti=${this.crediti_acquisto}`).then(function (){
+        this.$store.dispatch('setStatus');
 
-            this.showToast();
+        this.showToast();
       }).catch(error=>{
         //console.log(error.response.data.detail)
         this.showError(error.response.data.detail);
       });
     },
     showToast: function (){
-      this.$bvToast.toast('Il giocatore X è stato acquistato da y a z crediti', {
+      this.$bvToast.toast('Il giocatore '+this.acquisto.nome_giocatore+' è stato acquistato a '+this.crediti_acquisto+' crediti da '+this.squadra_selezionata.nome, {
         autoHideDelay: 2000,
         title: 'Giocatore acquistato correttamente',
         headerClass: 'header-toast',
@@ -67,6 +68,9 @@ export default {
   computed: {
     squadre: function (){
       return this.$store.getters.getSquadre;
+    },
+    acquisto: function (){
+      return this.$store.getters.getAcquisto;
     },
     id_giocatore: function (){
       return this.$store.getters.getIdEstratto;

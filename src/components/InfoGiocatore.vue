@@ -6,7 +6,7 @@
         class="h-100"
     >
       <template #header>
-        Info Giocatore <span class="float-right">{{status.info.estratti || 0}}/{{status.info.totali || 0}}</span>
+        Info Giocatore <span class="float-right" v-if="status.info">{{status.info.estratti || 0}}/{{status.info.totali || 0}}</span>
       </template>
       <b-card-text>
         <b-row>
