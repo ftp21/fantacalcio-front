@@ -80,7 +80,7 @@
           <b-input-group-append>
             <b-button variant="info" @click="aggiungi_squadra()">Aggiungi</b-button>
           </b-input-group-append>
-          <b-table ref="table" :items="squadre" :fields="fields" >
+          <b-table ref="table"  :items="squadre" :fields="fields" >
             <template v-slot:cell(rimuovi)="data">
               <b-button variant="danger" v-b-modal.modal-cancellazione @click="setModal(data.item.id)"  >Cancella</b-button>
             </template>
@@ -163,6 +163,12 @@ export default {
     setConfig: function () {
       axios.post(`${process.env.VUE_APP_API}configurazione`, `crediti_totali=${this.crediti}&raggruppa_portieri=${this.raggruppa_portieri}&portieri=${this.portieri}&difensori=${this.difensori}&centrocampisti=${this.centrocampisti}&attaccanti=${this.attaccanti}&crediti_nascosti=${this.crediti_visibili}`).then(
           response => {
+            this.$bvToast.toast('Configurazione salvata correttamente', {
+              autoHideDelay: 2000,
+              title: 'Configurazione',
+              headerClass: 'header-toast',
+              variant: 'success'
+            });
             //console.log(response);
           }).catch(e => alert(e));
     },
