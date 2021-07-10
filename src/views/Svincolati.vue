@@ -66,13 +66,11 @@
     </div>
 </template>
 <script>
-import Tabelle from "../components/Tabelle.vue";
 import axios from "axios";
 
 export default {
   name: "Svincolati",
   components: {
-    Tabelle,
   },
   data() {
     return {
