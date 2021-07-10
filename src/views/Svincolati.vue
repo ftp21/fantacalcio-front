@@ -100,10 +100,10 @@ export default {
     acquista:function (){
 
       axios.post(`${process.env.VUE_APP_API}mercato/acquista/${this.id_giocatore_acquisto}`,
-          `id_squadra=${this.squadra_acquisto.id}&crediti=${this.prezzo_acquisto}`).then(function (){
+          `id_squadra=${this.squadra_acquisto.id}&crediti=${this.prezzo_acquisto}`).then(response => {
         this.showToast();
         this.$store.dispatch('setStatus');
-        this.getSvincolati()
+        this.getSvincolati();
 
 
       }).catch(error=>{
