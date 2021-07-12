@@ -58,8 +58,8 @@
             label-cols-sm="3"
             label-align-sm="right"
         >
-          <b-form-checkbox v-model=raggruppa_portieri>Raggruppa portieri</b-form-checkbox>
-          <b-form-checkbox v-model=crediti_visibili>Nascondi crediti</b-form-checkbox>
+          <b-form-checkbox  v-model=raggruppa_portieri><span id="raggruppa_portieri">Raggruppa portieri</span></b-form-checkbox>
+          <b-form-checkbox v-model=crediti_visibili><span id="crediti_visibili" >Nascondi crediti</span></b-form-checkbox>
         </b-form-group>
 
         <b-form-group
@@ -109,7 +109,8 @@
       <p>Nuovo nome per la squadra:</p>
       <b-form-input v-model=new_nome_squadra></b-form-input>
     </b-modal>
-
+    <b-tooltip target="raggruppa_portieri" placement="right" triggers="hover">Non verranno estratti i singoli portieri ma le squadre. Aggiornare il numero dei portieri in base a quante squadre si vuole acquistare</b-tooltip>
+    <b-tooltip target="crediti_visibili" placement="right">Non visualizza le informazioni dei crediti nella pagina pubblica</b-tooltip>
 
   </div>
 </template>

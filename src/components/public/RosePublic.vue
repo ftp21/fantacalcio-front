@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-table borderless striped dark thead-class=""  tbody-tr-class="h2"  :items="rose" :fields="fields" thead-tr-class="h2" >
+    <b-table borderless striped dark thead-class=""  tbody-tr-class="h2"  :items="rose" :fields="fields" thead-tr-class="h2" head-variant="light">
     </b-table>
   </div>
 </template>
@@ -31,7 +31,6 @@ export default {
 </script>
 
 <style scoped>
-thead > tr {
-  margin-bottom: 150px;
-}
+
+
 </style>
