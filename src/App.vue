@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="app">
-    <Navbar></Navbar>
+    <Navbar v-if=homePage() ></Navbar>
   <router-view />
   </div>
 </template>
@@ -14,7 +14,15 @@ import Navbar from "./components/Navbar.vue";
 export default {
   name: "App",
   store: store,
-
+  methods:{
+    homePage() {
+      if(this.$route.path == "/public" ) {
+        return false
+      } else {
+        return true
+      }
+    }
+  },
   components: {
     Navbar,
 

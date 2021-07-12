@@ -39,10 +39,10 @@ export default {
   methods: {
     acquista:function (){
       axios.post(`${process.env.VUE_APP_API}mercato/acquista/${this.id_giocatore}`,
-          `id_squadra=${this.squadra_selezionata.id}&crediti=${this.crediti_acquisto}`).then(function (){
-        this.$store.dispatch('setStatus');
+          `id_squadra=${this.squadra_selezionata.id}&crediti=${this.crediti_acquisto}`).then(response =>{
+            this.$store.dispatch('setStatus');
 
-        this.showToast();
+            this.showToast();
       }).catch(error=>{
         //console.log(error.response.data.detail)
         this.showError(error.response.data.detail);

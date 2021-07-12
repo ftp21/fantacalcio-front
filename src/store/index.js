@@ -14,7 +14,15 @@ export default new Vuex.Store({
     ultimo_acquisto: {},
     info: {},
     squadre: {},
-    initial_config:1
+    initial_config:1,
+    socket: {
+      isConnected: false,
+      estratto: {},
+      acquisto: {},
+      rose: {},
+      info: {},
+      reconnectError: false,
+    },
   },
   mutations: {
     setStatus(state, payload){
@@ -37,7 +45,32 @@ export default new Vuex.Store({
     },
     setMescola(state,payload){
       state.mescola=payload
-    }
+    },
+    SOCKET_ONOPEN (state, event)  {
+      Vue.prototype.$socket = event.currentTarget
+      state.socket.isConnected = true
+    },
+    SOCKET_ONCLOSE (state, event)  {
+      state.socket.isConnected = false
+    },
+    SOCKET_ONERROR (state, event)  {
+      console.error(state, event)
+    },
+    // default handler called for all methods
+    SOCKET_ONMESSAGE (state, message)  {
+      let parsed=JSON.parse(message.data);
+      state.socket.estratto= parsed.estratto;
+      state.socket.acquisto= parsed.ultimo_acquisto;
+      state.socket.rose=parsed.rose;
+      state.socket.info=parsed.info;
+    },
+    // mutations for reconnect methods
+    SOCKET_RECONNECT(state, count) {
+      console.info(state, count)
+    },
+    SOCKET_RECONNECT_ERROR(state) {
+      state.socket.reconnectError = true;
+    },
 
   },
   actions: {
@@ -62,7 +95,10 @@ export default new Vuex.Store({
   },
   modules: {},
   getters: {
-    getStatus (state) { return state.status },
+    getStatus: (state, getters) => {
+      return state.status
+    },
+    // getStatus (state) { return state.status },
     getEstratto (state) { return state.estratto},
     getAcquisto (state) { return state.ultimo_acquisto},
     getMescola (state) { return state.mescola},
@@ -71,6 +107,6 @@ export default new Vuex.Store({
     getIdEstratto(state){
       return state.estratto.id
     },
-    getInit (state) { return state.initial_config }
+    getInit (state) { return state.initial_config },
   },
 })

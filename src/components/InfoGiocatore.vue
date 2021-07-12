@@ -50,6 +50,7 @@ export default {
     methods: {
     next: function () {
       axios.get(`${process.env.VUE_APP_API}estrai/avanti`).then(response =>{
+        this.$store.commit("increment");
         this.$store.commit('setEstratto',response.data);
         this.$store.dispatch('setStatus');
       })
@@ -80,3 +81,4 @@ export default {
 }
 
 </style>
+
