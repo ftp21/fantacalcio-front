@@ -10,7 +10,7 @@
     >
       <b-card-body>
         <b-form-group>
-          <label >Squadra</label>
+          <label>Squadra</label>
           <b-form-select v-model="squadra_id">
             <option v-for="squadra in squadre" :key="squadra.id" v-bind:value='squadra.id' >{{squadra.nome}}</option>
           </b-form-select>
