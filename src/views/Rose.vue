@@ -3,17 +3,22 @@
     <div class="container flex flex-col" style="padding-top: 10px">
 
       <div class="input_squadra">
-        <h2>Seleziona Squadra:</h2>
-        <b-form-select name="squadra" v-model="squadra_id" @change='giocatori_squadra()'>
-          <option v-for="squadra in squadre" :key="squadra.id" v-bind:value='squadra.id' >{{squadra.nome}}</option>
-        </b-form-select>
+        <b-form-group>
+          <h2>Seleziona Squadra:</h2>
+          <b-form-select name="squadra" v-model="squadra_id" @change='giocatori_squadra()'>
+            <option v-for="squadra in squadre" :key="squadra.id" v-bind:value='squadra.id' >{{squadra.nome}}</option>
+          </b-form-select>
+        </b-form-group>
+        <b-form-group>
+          <h2>Crediti:</h2>
+          <p>Crediti Rimanenti: {{this.crediti_rimanenti}}</p>
+          <p>Crediti Spesi: {{this.crediti_spesi}}</p>
+        </b-form-group>
+        <b-form-group>
+          <h2>Cerca Giocatore:</h2>
+          <b-form-input v-model="filter" type="search" id="filterInput" placeholder="Cerca giocatore"></b-form-input>
+        </b-form-group>
 
-        <h2>Crediti:</h2>
-        <p>Crediti Rimanenti: {{this.crediti_rimanenti}}</p>
-        <p>Crediti Spesi: {{this.crediti_spesi}}</p>
-
-        <h2>Cerca Giocatore:</h2>
-        <b-form-input v-model="filter" type="search" id="filterInput" placeholder="Cerca giocatore"></b-form-input>
       </div>
       <b-card no-body>
         <b-tabs card>

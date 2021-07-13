@@ -1,11 +1,12 @@
 <template>
   <div class="mescola h-100">
     <b-card
+        no-body
         header="Mescola"
         header-tag="header"
-        class="h-100"
+        class="h-100 d-flex flex-column"
     >
-      <b-card-text>
+      <b-card-body>
         <b-row>
           <b-col>
             <p>
@@ -46,7 +47,7 @@
               >
                 Attaccanti</b-form-checkbox>
             </p>
-            <b-row><b-button v-on:click="mescola_giocatori()">Mescola</b-button></b-row>
+
           </b-col>
           <b-col sm="6">
             <p>
@@ -60,9 +61,14 @@
             </p>
 
           </b-col>
+
         </b-row>
 
-      </b-card-text>
+
+      </b-card-body>
+      <b-card-footer>
+        <b-button v-on:click="mescola_giocatori()">Mescola</b-button>
+      </b-card-footer>
   </b-card>
   </div>
 </template>
@@ -99,7 +105,9 @@ export default {
 
 };
 </script>
+<style scoped>
 
+</style>
 
 <!--<style lang="scss">-->
 <!--.mescola {-->

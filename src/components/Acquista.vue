@@ -1,27 +1,34 @@
 <template>
   <div class="acquista h-100">
     <b-card
+        no-body
         header="Acquista"
         header-tag="header"
         class="h-100"
     >
-      <b-card-text>
+      <b-card-body>
         <b-row>
           <b-col sm="12">
-            <label>Squadra</label>
-            <b-form-select v-model="squadra_selezionata">
-<!--              <option v-for="squadra in squadre" :key="squadra.id" v-bind:value=squadra.id v-model="nome_squadra_acquisto">{{squadra.nome}}</option>-->
+            <b-form-group>
+                <label>Squadra</label>
+                <b-form-select v-model="squadra_selezionata">
+    <!--              <option v-for="squadra in squadre" :key="squadra.id" v-bind:value=squadra.id v-model="nome_squadra_acquisto">{{squadra.nome}}</option>-->
 
-              <option v-for="squadra in squadre" v-bind:value="{ id: squadra.id, nome: squadra.nome }">{{squadra.nome}}</option>
-            </b-form-select>
+                  <option v-for="squadra in squadre" v-bind:value="{ id: squadra.id, nome: squadra.nome }">{{squadra.nome}}</option>
+                </b-form-select>
+            </b-form-group>
+            <b-form-group>
+                <label>Crediti</label>
+                <b-input type="number" name="crediti" v-model.number='crediti_acquisto'/>
+            </b-form-group>
 
-            <label>Crediti</label>
-            <b-input type="number" name="crediti" v-model.number='crediti_acquisto'/>
-            <b-button @click='acquista'>Acquista</b-button>
           </b-col>
         </b-row>
 
-      </b-card-text>
+      </b-card-body>
+      <b-card-footer>
+        <b-button @click='acquista'>Acquista</b-button>
+      </b-card-footer>
     </b-card>
   </div>
 </template>

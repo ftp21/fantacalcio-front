@@ -3,20 +3,26 @@
 
   <div class="visualizza_crediti h-100">
     <b-card
+        no-body
         header="Visualizza crediti"
         header-tag="header"
         class="h-100"
     >
-      <b-card-text>
-        <label name="squadra">Squadra</label>
-        <b-form-select v-model="squadra_id">
-          <option v-for="squadra in squadre" :key="squadra.id" v-bind:value='squadra.id' >{{squadra.nome}}</option>
-        </b-form-select>
-        <label>Crediti</label>
-        <p>{{squadra_crediti > 0 && visible ? squadra_crediti : 'Non disponibile' }}</p>
+      <b-card-body>
+        <b-form-group>
+          <label >Squadra</label>
+          <b-form-select v-model="squadra_id">
+            <option v-for="squadra in squadre" :key="squadra.id" v-bind:value='squadra.id' >{{squadra.nome}}</option>
+          </b-form-select>
+        </b-form-group>
+        <b-form-group>
+          <label>Crediti</label>
+          <p class="h2 text-center">{{squadra_crediti > 0 && visible ? squadra_crediti : '' }}</p>
+        </b-form-group>
+      </b-card-body>
+      <b-card-footer>
         <b-button @click='visualizza'>Visualizza</b-button>
-      </b-card-text>
-
+      </b-card-footer>
     </b-card>
 
 

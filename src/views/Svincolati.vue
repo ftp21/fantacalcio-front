@@ -1,9 +1,11 @@
 <template>
     <div class="container flex flex-col">
-      <div class="input_squadra">
-        <h2>Cerca Giocatore:</h2>
-        <b-form-input v-model="filter" type="search" id="filterInput" placeholder="Cerca giocatore"></b-form-input>
-      </div>
+      <b-form-group>
+        <div class="input_squadra">
+          <h2>Cerca Giocatore:</h2>
+          <b-form-input v-model="filter" type="search" id="filterInput" placeholder="Cerca giocatore"></b-form-input>
+        </div>
+      </b-form-group>
       <b-card no-body>
         <b-tabs card>
 

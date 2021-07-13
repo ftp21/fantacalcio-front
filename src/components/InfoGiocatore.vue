@@ -1,6 +1,7 @@
 <template>
   <div class="info_giocatore h-100">
     <b-card
+        no-body
         header="Info Giocatore"
         header-tag="header"
         class="h-100"
@@ -8,25 +9,28 @@
       <template #header>
         Info Giocatore <span class="float-right" v-if="status.info">{{status.info.estratti || 0}}/{{status.info.totali || 0}}</span>
       </template>
-      <b-card-text>
+      <b-card-body>
         <b-row>
-          <b-col sm="6">
-          <b-img :src="estratto.campioncino" fluid height="10%"></b-img>
+          <b-col sm="6" style="">
+            <b-img :src="estratto.campioncino" fluid ></b-img>
           </b-col>
           <b-col sm="6">
             <div class="info_giocatore_right flex flex-col">
               <p>Nome: {{estratto.nome_giocatore}}</p>
               <p>Ruolo: {{estratto.ruolo}}</p>
               <p>Squadra: {{estratto.squadra}}</p>
-              <div class="flex buttons">
-                <b-button @click='prev'>Indietro</b-button>
-                <b-button @click='next'>Avanti</b-button>
-              </div>
+
             </div>
           </b-col>
         </b-row>
 
-      </b-card-text>
+      </b-card-body>
+      <b-card-footer class="text-center">
+        <b-btn-group class="w-100">
+          <b-button @click='prev'>Indietro</b-button>
+          <b-button @click='next'>Avanti</b-button>
+        </b-btn-group>
+      </b-card-footer>
 
     </b-card>
 
