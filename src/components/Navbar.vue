@@ -12,14 +12,45 @@
         <template #button-content>
           Download
         </template>
-        <b-dropdown-item href="#">Svincolati</b-dropdown-item>
-        <b-dropdown-item href="#">File Fantagazzetta</b-dropdown-item>
-        <b-dropdown-item href="#">Listone</b-dropdown-item>
-        <b-dropdown-item href="#">Zip unico</b-dropdown-item>
+        <b-dropdown-item :href="svincolati">Svincolati</b-dropdown-item>
+        <b-dropdown-item :href="fanta" target="_blank">File Fantagazzetta</b-dropdown-item>
+        <b-dropdown-item :href="listone">Listone</b-dropdown-item>
+<!--        <b-dropdown-item :href="zip">Zip unico</b-dropdown-item>-->
       </b-nav-item-dropdown>
 
     </b-navbar-nav>
 
   </b-navbar>
 </template>
+<script>
 
+export default {
+  name: "Navbar",
+
+  components: {
+  },
+  data(){
+    return {
+      svincolati: '',
+      fanta: '',
+      listone: '',
+      zip: ''
+    }
+  },
+  computed: {
+
+  },
+  mounted() {
+    this.svincolati=process.env.VUE_APP_API+'export/svincolati';
+    this.fanta=process.env.VUE_APP_API+'export/fanta';
+    this.listone=process.env.VUE_APP_API+'export/listone';
+    // this.zip=process.env.VUE_APP_API+'export/zip';
+
+  },
+  created() {
+  },
+  methods: {
+
+  }
+};
+</script>
