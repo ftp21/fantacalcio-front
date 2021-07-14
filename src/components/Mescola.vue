@@ -6,69 +6,71 @@
         header-tag="header"
         class="h-100 d-flex flex-column"
     >
-      <b-card-body>
-        <b-row>
-          <b-col>
-            <p>
-              <b-form-checkbox
-              type="checkbox"
-              id="ruolo1"
-              name="ruolo1"
-              v-model="mescola.portieri"
-              >
-                Portieri</b-form-checkbox>
-            </p>
-            <p>
-              <b-form-checkbox
+<!--      <b-collapse visible id="collapse-3">-->
+          <b-card-body >
+            <b-row>
+              <b-col>
+                <p>
+                  <b-form-checkbox
                   type="checkbox"
-                  id="ruolo2"
-                  name="ruolo2"
-                  v-model="mescola.difensori"
-              >
-                Difensori</b-form-checkbox>
-            </p>
-            <p>
-              <b-form-checkbox
-                  type="checkbox"
-                  id="ruolo3"
-                  name="ruolo3"
+                  id="ruolo1"
+                  name="ruolo1"
+                  v-model="mescola.portieri"
+                  >
+                    Portieri</b-form-checkbox>
+                </p>
+                <p>
+                  <b-form-checkbox
+                      type="checkbox"
+                      id="ruolo2"
+                      name="ruolo2"
+                      v-model="mescola.difensori"
+                  >
+                    Difensori</b-form-checkbox>
+                </p>
+                <p>
+                  <b-form-checkbox
+                      type="checkbox"
+                      id="ruolo3"
+                      name="ruolo3"
 
-                  v-model="mescola.centrocampisti"
+                      v-model="mescola.centrocampisti"
 
-              >
-                Centrocampisti</b-form-checkbox>
-            </p>
-            <p>
-              <b-form-checkbox
-                  type="checkbox"
-                  id="ruolo4"
-                  name="ruolo4"
-                  v-model="mescola.attaccanti"
-              >
-                Attaccanti</b-form-checkbox>
-            </p>
+                  >
+                    Centrocampisti</b-form-checkbox>
+                </p>
+                <p>
+                  <b-form-checkbox
+                      type="checkbox"
+                      id="ruolo4"
+                      name="ruolo4"
+                      v-model="mescola.attaccanti"
+                  >
+                    Attaccanti</b-form-checkbox>
+                </p>
 
-          </b-col>
-          <b-col sm="6">
-            <p>
-              <b-form-checkbox
-                  id="order"
-                  name="order"
-                  v-model="mescola.alfabetico"
-                  >Ordine alfabetico</b-form-checkbox>
-
-
-            </p>
-
-          </b-col>
-
-        </b-row>
+              </b-col>
+              <b-col sm="6">
+                <p>
+                  <b-form-checkbox
+                      id="order"
+                      name="order"
+                      v-model="mescola.alfabetico"
+                      >Ordine alfabetico</b-form-checkbox>
 
 
-      </b-card-body>
-      <b-card-footer>
-        <b-button v-on:click="mescola_giocatori()">Mescola</b-button>
-      </b-card-footer>
+                </p>
+
+              </b-col>
+
+            </b-row>
+
+
+          </b-card-body>
+          <b-card-footer>
+            <b-button v-on:click="mescola_giocatori()">Mescola</b-button>
+          </b-card-footer>
+<!--      </b-collapse>-->
   </b-card>
   </div>
 </template>

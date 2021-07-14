@@ -35,7 +35,7 @@ export default {
   name: "Public",
   components: {Info,PublicAcquisto,RosePublic},
   created: function() {
-    Vue.use(VueNativeSock, 'ws://127.0.0.1:5555/ws', {
+    Vue.use(VueNativeSock, `ws://${window.location.host}/ws`, {
       reconnection: true, // (Boolean) whether to reconnect automatically (false)
       reconnectionAttempts: 5, // (Number) number of reconnection attempts before giving up (Infinity),
       reconnectionDelay: 3000, // (Number) how long to initially wait before attempting a new (1000)
