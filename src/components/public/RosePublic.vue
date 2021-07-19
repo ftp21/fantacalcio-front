@@ -23,6 +23,8 @@ export default {
       ],
     };
   },
+  mounted(){
+  },
   computed: mapState({
     rose: state => state.socket.rose,
     status: state => state.socket.info

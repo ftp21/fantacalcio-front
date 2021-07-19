@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid bg-dark" style="height: 100vh; ">
+  <div class="container-fluid bg-dark" style="width: 100% ">
     <div class="row flex-fill h-100">
       <div class="col-sm-4">
         <div class="row flex-fill h-50">
@@ -35,7 +35,11 @@ export default {
   name: "Public",
   components: {Info,PublicAcquisto,RosePublic},
   created: function() {
-    Vue.use(VueNativeSock, `ws://${window.location.host}/ws`, {
+    var proto='wss';
+    if (location.protocol !== 'https:') {
+      proto='ws';
+    }
+    Vue.use(VueNativeSock, `${proto}://${window.location.host}/ws`, {
       reconnection: true, // (Boolean) whether to reconnect automatically (false)
       reconnectionAttempts: 5, // (Number) number of reconnection attempts before giving up (Infinity),
       reconnectionDelay: 3000, // (Number) how long to initially wait before attempting a new (1000)
