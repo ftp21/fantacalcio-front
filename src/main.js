@@ -5,7 +5,9 @@ import router from './router'
 import BootstrapVue from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap-vue/dist/bootstrap-vue.css"
+import VueMeta from 'vue-meta';
 
+Vue.use(VueMeta);
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
 new Vue({
