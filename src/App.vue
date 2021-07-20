@@ -14,6 +14,10 @@ import Navbar from "./components/Navbar.vue";
 export default {
   name: "App",
   store: store,
+  metaInfo: {
+    // if no subcomponents specify a metaInfo.title, this title will be used
+    title: 'Asta Fantacalcio',
+  },
   methods:{
     homePage() {
       if(this.$route.path == "/public" ) {
@@ -28,7 +32,6 @@ export default {
 
   },
   created() {
-    document.title = "Fantacalcio"
   },
   computed: {
 
