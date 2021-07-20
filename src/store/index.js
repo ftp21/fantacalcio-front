@@ -49,6 +49,7 @@ export default new Vuex.Store({
     SOCKET_ONOPEN (state, event)  {
       Vue.prototype.$socket = event.currentTarget
       state.socket.isConnected = true
+      axios.get(`${process.env.VUE_APP_API}public`)
     },
     SOCKET_ONCLOSE (state, event)  {
       state.socket.isConnected = false

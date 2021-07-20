@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-table borderless striped dark thead-class=""  tbody-tr-class="h2"  :items="rose" :fields="fields" thead-tr-class="h2" head-variant="light">
+    <b-table borderless striped dark responsive thead-class=""  tbody-tr-class="h2"  :items="rose" :fields="fields" thead-tr-class="h2" head-variant="light" style="padding-top: 50px">
     </b-table>
   </div>
 </template>

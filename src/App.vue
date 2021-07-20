@@ -34,9 +34,10 @@ export default {
 
 	},
 	mounted() {
-    this.$store.dispatch('setStatus');
-    this.$store.dispatch('setSquadre');
-
+    if(this.$route.path != "/public" ) {
+      this.$store.dispatch('setStatus');
+      this.$store.dispatch('setSquadre');
+    }
 
 	},
 };
