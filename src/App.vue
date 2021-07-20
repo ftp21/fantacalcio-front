@@ -17,6 +17,9 @@ export default {
   metaInfo: {
     // if no subcomponents specify a metaInfo.title, this title will be used
     title: 'Asta Fantacalcio',
+    meta: [
+      { property: 'og:title', content: "Asta Fantacalcio"},
+    ]
   },
   methods:{
     homePage() {
