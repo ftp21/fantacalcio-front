@@ -10,10 +10,11 @@ import Public from "@/views/Public";
 Vue.use(VueRouter)
 
 const routes = [
+
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
   },
   {
     path: '/rose',

@@ -1,4 +1,5 @@
 <template>
+
   <div id="app" class="app">
     <Navbar v-if=homePage() ></Navbar>
   <router-view />
@@ -14,13 +15,6 @@ import Navbar from "./components/Navbar.vue";
 export default {
   name: "App",
   store: store,
-  metaInfo: {
-    // if no subcomponents specify a metaInfo.title, this title will be used
-    title: 'Asta Fantacalcio',
-    meta: [
-      { property: 'og:title', content: "Asta Fantacalcio"},
-    ]
-  },
   methods:{
     homePage() {
       if(this.$route.path == "/public" ) {

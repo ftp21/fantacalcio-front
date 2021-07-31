@@ -10,6 +10,7 @@ import VueMeta from 'vue-meta';
 Vue.use(VueMeta);
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
+
 new Vue({
   store,
   router,
