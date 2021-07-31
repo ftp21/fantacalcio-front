@@ -12,35 +12,35 @@ Vue.use(VueRouter)
 const routes = [
 
   {
-    path: '/',
+    path: '/manage/index',
     name: 'Home',
     component: Home,
   },
   {
-    path: '/rose',
+    path: '/manage/rose',
     name: 'Rose',
     component: Rose
     
   },
   {
-    path: '/svincolati',
+    path: '/manage/svincolati',
     name: 'Svincolati',
     component: Svincolati
     
   },
   {
-    path: '/impostazioni',
+    path: '/manage/impostazioni',
     name: 'Impostazioni',
     component: Impostazioni
     
   },
   {
-    path: '/squadre',
+    path: '/manage/squadre',
     name: 'GestioneSquadre',
     component: GestioneSquadre
   },
   {
-    path: '/public',
+    path: '/',
     name: 'Public',
     component: Public
   },

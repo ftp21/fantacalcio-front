@@ -1,12 +1,12 @@
 <template>
   <b-navbar type="dark" variant="dark" >
-    <b-navbar-brand href="/">Home</b-navbar-brand>
+    <b-navbar-brand href="/manage/index">Home</b-navbar-brand>
     <b-navbar-nav>
-      <b-nav-item to="/rose">Rose</b-nav-item>
-      <b-nav-item to="/svincolati">Svincolati</b-nav-item>
+      <b-nav-item to="/manage/rose">Rose</b-nav-item>
+      <b-nav-item to="/manage/svincolati">Svincolati</b-nav-item>
     </b-navbar-nav>
     <b-navbar-nav class="ml-auto" >
-      <b-nav-item to="/impostazioni">Impostazioni</b-nav-item>
+      <b-nav-item to="/manage/impostazioni">Impostazioni</b-nav-item>
       <b-nav-item-dropdown right>
         <!-- Using 'button-content' slot -->
         <template #button-content>
