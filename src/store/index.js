@@ -21,6 +21,7 @@ export default new Vuex.Store({
       acquisto: {},
       rose: {},
       info: {},
+      crediti_nascosti: "",
       reconnectError: false,
     },
   },
@@ -31,6 +32,7 @@ export default new Vuex.Store({
       state.estratto= payload.estratto;
       state.ultimo_acquisto= payload.ultimo_acquisto;
       state.info=payload.info;
+
       // if(state.squadre.length()==0){
       //   state.initial_config=0;
       // }else{
@@ -64,6 +66,7 @@ export default new Vuex.Store({
       state.socket.acquisto= parsed.ultimo_acquisto;
       state.socket.rose=parsed.rose;
       state.socket.info=parsed.info;
+      state.socket.crediti_nascosti=parsed.crediti_nascosti;
     },
     // mutations for reconnect methods
     SOCKET_RECONNECT(state, count) {
