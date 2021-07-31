@@ -17,10 +17,10 @@ export default {
   store: store,
   methods:{
     homePage() {
-      if(this.$route.path == "/public" ) {
-        return false
-      } else {
+      if(this.$route.path.includes('/manage/')  ) {
         return true
+      } else {
+        return false
       }
     }
   },
