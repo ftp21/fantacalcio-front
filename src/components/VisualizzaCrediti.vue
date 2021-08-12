@@ -17,7 +17,10 @@
         </b-form-group>
         <b-form-group>
           <label>Crediti</label>
-          <p class="h2 text-center">{{squadra_crediti > 0 && visible ? squadra_crediti : '' }}</p>
+          <transition name="fade" :duration="{ enter: 1000, leave: 1000 }">
+            <p class="h2 text-center" v-if="visible">{{squadra_crediti > 0 && visible ? squadra_crediti : '' }}</p>
+          </transition>
+
         </b-form-group>
       </b-card-body>
       <b-card-footer>
@@ -48,7 +51,8 @@ export default {
         axios.get(`${process.env.VUE_APP_API}rosa/${squadra_id}`).then(response=>{
         //console.log(response.data[0]);
         this.squadra_crediti = response.data.crediti_rimanenti;
-        this.visible = !this.visible;
+        this.visible = true;
+          setTimeout(() => this.visible = false, 5000);
       })
       }
     }
@@ -68,21 +72,16 @@ export default {
 .card{
   color: black;
 }
-/*.visualizza_crediti {
-  .main {
-    height: 100%;
-    .squadre {
-      height: 100%;
-      justify-content: space-around;
-      align-items: center;
-      select {
-        width: 50%;
-        height: 30px;
-      }
-      button {
-        padding: 5px 5px;
-      }
-    }
-  }
-}*/
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s
+}
+
+.fade-enter,
+.fade-leave-to
+  /* .fade-leave-active in <2.1.8 */
+
+{
+  opacity: 0
+}
 </style>
