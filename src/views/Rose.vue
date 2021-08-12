@@ -37,7 +37,7 @@
               <b-table :items="rosa_attuale.difensori" :fields="fields"  :filter="filter">
                 <template v-slot:cell(svincola)="data">
                   <!--                  <b-button variant="danger" @click="deleteItem(data.item.id)">Delete</b-button>-->
-                  <b-button variant="danger">Svincola</b-button>
+                  <b-button variant="danger"  v-b-modal.modal-1 @click="setModal(data.item.id_giocatore)">Svincola</b-button>
                 </template>
               </b-table>
 <!--              <b-table :items="rosa_attuale.difensori" :fields="fields"></b-table>-->
@@ -48,7 +48,7 @@
               <b-table :items="rosa_attuale.centrocampisti" :fields="fields"  :filter="filter">
                 <template v-slot:cell(svincola)="data">
                   <!--                  <b-button variant="danger" @click="deleteItem(data.item.id)">Delete</b-button>-->
-                  <b-button variant="danger">Svincola</b-button>
+                  <b-button variant="danger"  v-b-modal.modal-1 @click="setModal(data.item.id_giocatore)">Svincola</b-button>
                 </template>
               </b-table>
 <!--              <b-table :items="rosa_attuale.centrocampisti" :fields="fields"></b-table>-->
@@ -59,7 +59,7 @@
               <b-table :items="rosa_attuale.attaccanti" :fields="fields"  :filter="filter">
                 <template v-slot:cell(svincola)="data">
                   <!--                  <b-button variant="danger" @click="deleteItem(data.item.id)">Delete</b-button>-->
-                  <b-button variant="danger">Svincola</b-button>
+                  <b-button variant="danger"  v-b-modal.modal-1 @click="setModal(data.item.id_giocatore)">Svincola</b-button>
                 </template>
               </b-table>
 <!--              <b-table :items="rosa_attuale.attaccanti" :fields="fields"></b-table>-->

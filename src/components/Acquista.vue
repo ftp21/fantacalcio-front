@@ -56,7 +56,7 @@ export default {
       });
     },
     showToast: function (){
-      this.$bvToast.toast('Il giocatore '+this.acquisto.nome_giocatore+' è stato acquistato a '+this.crediti_acquisto+' crediti da '+this.squadra_selezionata.nome, {
+      this.$bvToast.toast('Il giocatore '+this.estratto.nome_giocatore+' è stato acquistato a '+this.crediti_acquisto+' crediti da '+this.squadra_selezionata.nome, {
         autoHideDelay: 2000,
         title: 'Giocatore acquistato correttamente',
         headerClass: 'header-toast',
@@ -78,6 +78,9 @@ export default {
     },
     acquisto: function (){
       return this.$store.getters.getAcquisto;
+    },
+    estratto: function (){
+      return this.$store.getters.getEstratto;
     },
     id_giocatore: function (){
       return this.$store.getters.getIdEstratto;
