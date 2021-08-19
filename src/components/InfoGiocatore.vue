@@ -26,9 +26,9 @@
 
       </b-card-body>
       <b-card-footer class="text-center">
-        <b-btn-group class="w-100">
-          <b-button @click='prev'>Indietro</b-button>
-          <b-button @click='next'>Avanti</b-button>
+        <b-btn-group class="w-100" style="">
+          <b-button @click='prev' style="color:#fff;">Indietro</b-button>
+          <b-button @click='next' style="color:#fff;">Avanti</b-button>
         </b-btn-group>
       </b-card-footer>
 
