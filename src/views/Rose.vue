@@ -70,7 +70,7 @@
       <div>
 
       </div>
-      <b-modal id="modal-1" title="BootstrapVue" @ok="svincola(id_giocatore_svincolo)" @cancel="id_giocatore_svincolo=0">
+      <b-modal id="modal-1" title="Svincola" @ok="svincola(id_giocatore_svincolo)" @cancel="id_giocatore_svincolo=0">
         <p class="my-4">Il giocatore verrà svincolato confermi? </p>
       </b-modal>
 

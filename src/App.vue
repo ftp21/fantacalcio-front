@@ -34,7 +34,7 @@ export default {
 
 	},
 	mounted() {
-    if(this.$route.path != "/public" ) {
+    if(this.$route.path != "/public" || !this.$route.path.includes('/personal/') ) {
       this.$store.dispatch('setStatus');
       this.$store.dispatch('setSquadre');
     }

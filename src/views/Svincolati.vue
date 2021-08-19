@@ -56,7 +56,7 @@
           </b-tab>
         </b-tabs>
       </b-card>
-      <b-modal id="modal-1" title="BootstrapVue" @ok="acquista(id_giocatore_acquisto)" @cancel="id_giocatore_acquisto=0">
+      <b-modal id="modal-1" title="Acquista" @ok="acquista(id_giocatore_acquisto)" @cancel="id_giocatore_acquisto=0">
         <p class="my-4">Il giocatore verrà acquistato dalla squadra: </p>
         <b-form-select v-model="squadra_acquisto">
           <option v-for="squadra in squadre" v-bind:value="{ id: squadra.id, nome: squadra.nome }" >{{squadra.nome}}</option>
