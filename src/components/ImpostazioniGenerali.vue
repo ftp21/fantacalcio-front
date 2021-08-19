@@ -82,7 +82,7 @@
           </b-input-group-append>
           <b-table ref="table"  :items="squadre" :fields="fields" >
             <template v-slot:cell(code)="data">
-              <b-link :href="`/personal/${data.item.code}`">OTP</b-link>
+
             </template>
             <template v-slot:cell(rimuovi)="data">
               <b-button variant="danger" v-b-modal.modal-cancellazione @click="setModal(data.item.id)"  >Cancella</b-button>
@@ -90,6 +90,14 @@
             <template v-slot:cell(rinomina)="data">
               <b-button variant="info"  v-b-modal.modal-rinomina @click="setModal(data.item.id)">Rinomina</b-button>
             </template>
+            <template v-slot:cell(share)="data">
+              <p>
+                <b-link :href="`whatsapp://send?text=https://${url}/personal/${data.item.code} Con questo link questa sera vedrai la situazione della tua rosa e dei tuoi crediti. Il link è personale, dunque chiunque lo riceve può vedere la tua situazione all'asta`"><font-awesome-icon :icon="[ 'fab', 'whatsapp-square' ]"  style="color: #25d366"  size="2x"></font-awesome-icon></b-link>
+                <b-link :href="`tg://msg?text=https://${url}/personal/${data.item.code} Con questo link questa sera vedrai la situazione della tua rosa e dei tuoi crediti. Il link è personale, dunque chiunque lo riceve può vedere la tua situazione all'asta`"><font-awesome-icon :icon="[ 'fab', 'telegram' ]" style="color: #0088cc" size="2x"></font-awesome-icon></b-link>
+              </p>
+
+            </template>
+
           </b-table>
         </b-input-group>
 
@@ -120,9 +128,13 @@
 <script>
 import axios from 'axios';
 
+
+
+
 export default {
   data() {
     return {
+      url: window.location.host,
       crediti: '',
       raggruppa_portieri: false,
       portieri: '',
@@ -133,9 +145,9 @@ export default {
       fields: [
         //'id',
         'nome',
-          'code',
         'rimuovi',
-          'rinomina'
+          'rinomina',
+          'share'
       ],
       id_squadra_cancellazione: 0,
       nome_squadra: "",
@@ -207,5 +219,9 @@ export default {
 
 };
 </script>
+<style scoped>
+
+
+</style>
 
 

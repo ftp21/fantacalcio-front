@@ -8,6 +8,18 @@ import GestioneSquadre from '../views/GestioneSquadre'
 import Public from "@/views/Public";
 import Personal from "@/views/Personal";
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faWhatsapp , faTelegram, faWhatsappSquare} from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+library.add(faWhatsapp)
+library.add(faWhatsappSquare)
+
+library.add(faTelegram)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+
+
 Vue.use(VueRouter)
 
 const routes = [
