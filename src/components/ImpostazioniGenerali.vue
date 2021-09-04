@@ -92,7 +92,7 @@
             </template>
             <template v-slot:cell(share)="data">
               <p>
-                <b-link :href="`https://${url}/personal/${data.item.code}`"><font-awesome-icon :icon="[ 'fab', 'link' ]" size="2x"></font-awesome-icon></b-link>
+                <b-link :href="`https://${url}/personal/${data.item.code}`"><font-awesome-icon :icon="[ 'fas', 'link' ]" size="2x"></font-awesome-icon></b-link>
                 <b-link :href="`whatsapp://send?text=https://${url}/personal/${data.item.code} Con questo link questa sera vedrai la situazione della tua rosa e dei tuoi crediti. ATTENZIONE: Il link è personale, non mostrarlo a gli altri partecipanti`"><font-awesome-icon :icon="[ 'fab', 'whatsapp-square' ]"  style="color: #25d366"  size="2x"></font-awesome-icon></b-link>
                 <b-link :href="`tg://msg?text=https://${url}/personal/${data.item.code} Con questo link questa sera vedrai la situazione della tua rosa e dei tuoi crediti. ATTENZIONE: Il link è personale, non mostrarlo a gli altri partecipanti`"><font-awesome-icon :icon="[ 'fab', 'telegram' ]" style="color: #0088cc" size="2x"></font-awesome-icon></b-link>
               </p>
