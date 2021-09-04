@@ -148,7 +148,7 @@ export default {
         'nome',
         'rimuovi',
           'rinomina',
-          'share rosa'
+          'share'
       ],
       id_squadra_cancellazione: 0,
       nome_squadra: "",
