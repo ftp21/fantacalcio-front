@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid bg-dark" style="width: 100% ; min-height: 100vh">
     <div class="row flex-fill text-center">
-
+      <p class="h1 text-white w-100"> {{personalData.nome_squadra}}</p>
       <p class="h1 text-white w-100"> {{personalData.crediti_spesi}}/{{personalData.crediti_rimanenti}} &nbsp; {{personalData.crediti_rimanenti+personalData.crediti_spesi}}</p>
     </div>
     <div class="row flex-fill text-center">
