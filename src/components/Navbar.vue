@@ -6,6 +6,7 @@
       <b-nav-item to="/manage/svincolati">Svincolati</b-nav-item>
     </b-navbar-nav>
     <b-navbar-nav class="ml-auto" >
+      <b-nav-item to="/manage/upload_listone">Upload Listone</b-nav-item>
       <b-nav-item to="/manage/impostazioni">Impostazioni</b-nav-item>
       <b-nav-item-dropdown right>
         <!-- Using 'button-content' slot -->

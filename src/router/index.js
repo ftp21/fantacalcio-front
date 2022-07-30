@@ -12,6 +12,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faLink } from '@fortawesome/free-solid-svg-icons'
 import { faWhatsapp , faTelegram, faWhatsappSquare} from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import UploadListone from "@/views/UploadListone";
 library.add(faWhatsapp)
 library.add(faWhatsappSquare)
 library.add(faLink)
@@ -41,6 +42,12 @@ const routes = [
     name: 'Svincolati',
     component: Svincolati
     
+  },
+  {
+    path: '/manage/upload_listone',
+    name: 'Upload Listone',
+    component: UploadListone
+
   },
   {
     path: '/manage/impostazioni',
