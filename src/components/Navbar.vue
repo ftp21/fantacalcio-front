@@ -16,7 +16,7 @@
         <b-dropdown-item :href="svincolati">Svincolati</b-dropdown-item>
         <b-dropdown-item :href="fanta" target="_blank">File Fantagazzetta</b-dropdown-item>
         <b-dropdown-item :href="listone">Listone</b-dropdown-item>
-<!--        <b-dropdown-item :href="zip">Zip unico</b-dropdown-item>-->
+        <b-dropdown-item :href="acquisti">Rose</b-dropdown-item>
       </b-nav-item-dropdown>
 
     </b-navbar-nav>
@@ -35,7 +35,7 @@ export default {
       svincolati: '',
       fanta: '',
       listone: '',
-      zip: ''
+      acquisti: ''
     }
   },
   computed: {
@@ -45,7 +45,7 @@ export default {
     this.svincolati=process.env.VUE_APP_API+'export/svincolati';
     this.fanta=process.env.VUE_APP_API+'export/fanta';
     this.listone=process.env.VUE_APP_API+'export/listone';
-    // this.zip=process.env.VUE_APP_API+'export/zip';
+    this.acquisti=process.env.VUE_APP_API+'export/acquisti';
 
   },
   created() {
