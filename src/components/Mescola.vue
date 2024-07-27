@@ -86,7 +86,7 @@ export default {
   },
   methods: {
     mescola_giocatori: function () {
-      axios.post(`${process.env.VUE_APP_API}mescola`, `portieri=${this.mescola.portieri}&attaccanti=${this.mescola.attaccanti}&centrocampisti=${this.mescola.centrocampisti}&difensori=${this.mescola.difensori}&alfabetico=${this.mescola.alfabetico}`).then(
+      axios.post(this.$apiBaseUrl + `mescola`, `portieri=${this.mescola.portieri}&attaccanti=${this.mescola.attaccanti}&centrocampisti=${this.mescola.centrocampisti}&difensori=${this.mescola.difensori}&alfabetico=${this.mescola.alfabetico}`).then(
         response => {
 
           this.$store.commit('setMescola',this.mescola);

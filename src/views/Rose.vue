@@ -115,7 +115,7 @@ export default {
   methods:{
      
       giocatori_squadra:function(){
-         axios.get(`${process.env.VUE_APP_API}rosa/${this.squadra_id}`).then((response) => {
+         axios.get(this.$apiBaseUrl + `rosa/${this.squadra_id}`).then((response) => {
        // //console.log(response.data);
            this.rosa_attuale.portieri = response.data.portieri;
            this.rosa_attuale.difensori = response.data.difensori;
@@ -129,7 +129,7 @@ export default {
         this.id_giocatore_svincolo=id;
     },
     svincola(id_giocatore){
-      axios.post(`${process.env.VUE_APP_API}mercato/svincola/${id_giocatore}`).then(response=>{
+      axios.post(this.$apiBaseUrl + `mercato/svincola/${id_giocatore}`).then(response=>{
         //console.log(response.data);
         this.$store.dispatch('setStatus');
         this.giocatori_squadra();
@@ -139,7 +139,7 @@ export default {
     }
   },
   mounted() {
-    // axios.get(`${process.env.VUE_APP_API}squadre`).then((response) => {
+    // axios.get(this.$apiBaseUrl + `squadre`).then((response) => {
     //   // //console.log(response.data);
     //   let squadre = response.data;
     //   //console.log(squadre);

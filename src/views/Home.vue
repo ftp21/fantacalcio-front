@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     // status: function(){
-    //   axios.get(`${process.env.VUE_APP_API}status`).then(response=>{
+    //   axios.get(this.$apiBaseUrl + `status`).then(response=>{
     //     // this.$store.commit('setStatus',response.data.info);
     //     this.$store.commit('setGiocatoreAttuale', response.data.estratto.id);
     //     // this.$store.commit('setUltimoAcquisto', response.data.ultimo_acquisto);

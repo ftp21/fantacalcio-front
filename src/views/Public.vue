@@ -35,17 +35,8 @@ export default {
   name: "Public",
   components: {Info,PublicAcquisto,RosePublic},
   created: function() {
-    var proto='wss';
-    var ws_url=''
-    if (location.protocol !== 'https:') {
-      proto='ws';
-    }
-    console.log(process.env)
-    if (process.env.NODE_ENV === 'development'){
-      ws_url=process.env.VUE_APP_WS;
-    }else {
-      ws_url=`${proto}://${window.location.host}/ws`;
-    }
+    var ws_url=this.$wsBaseUrl;
+    
 
     Vue.use(VueNativeSock,ws_url , {
       reconnection: true, // (Boolean) whether to reconnect automatically (false)

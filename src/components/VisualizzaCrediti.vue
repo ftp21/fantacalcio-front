@@ -48,7 +48,7 @@ export default {
     visualizza(){
       let squadra_id = this.squadra_id;
       if(squadra_id != ''){
-        axios.get(`${process.env.VUE_APP_API}rosa/${squadra_id}`).then(response=>{
+        axios.get(this.$apiBaseUrl + `rosa/${squadra_id}`).then(response=>{
         //console.log(response.data[0]);
         this.squadra_crediti = response.data.crediti_rimanenti;
         this.visible = true;

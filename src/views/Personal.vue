@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     getPersonal: function () {
-      axios.get(`${process.env.VUE_APP_API}personal/${this.$route.params.otp}`).then(
+      axios.get(this.$apiBaseUrl + `personal/${this.$route.params.otp}`).then(
           response =>{
             this.personalData = response.data;
           }

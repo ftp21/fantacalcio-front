@@ -56,7 +56,7 @@ export default {
       const formData = new FormData();
       formData.append('file', this.$refs.fileAdd.files[0]);
       const headers = { 'Content-Type': 'multipart/form-data' };
-      axios.post(`${process.env.VUE_APP_API}listone`, formData, { headers }).then(response=>{
+      axios.post(this.$apiBaseUrl + `listone`, formData, { headers }).then(response=>{
         this.login=true;
         this.portieri=response.data.portieri;
         this.difensori=response.data.difensori;

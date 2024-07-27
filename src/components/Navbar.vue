@@ -42,10 +42,10 @@ export default {
 
   },
   mounted() {
-    this.svincolati=process.env.VUE_APP_API+'export/svincolati';
-    this.fanta=process.env.VUE_APP_API+'export/fanta';
-    this.listone=process.env.VUE_APP_API+'export/listone';
-    this.acquisti=process.env.VUE_APP_API+'export/acquisti';
+    this.svincolati=this.$apiBaseUrl+'export/svincolati';
+    this.fanta=this.$apiBaseUrl+'export/fanta';
+    this.listone=this.$apiBaseUrl+'export/listone';
+    this.acquisti=this.$apiBaseUrl+'export/acquisti';
 
   },
   created() {

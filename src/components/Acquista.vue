@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     acquista:function (){
-      axios.post(`${process.env.VUE_APP_API}mercato/acquista/${this.id_giocatore}`,
+      axios.post(this.$apiBaseUrl + `mercato/acquista/${this.id_giocatore}`,
           `id_squadra=${this.squadra_selezionata.id}&crediti=${this.crediti_acquisto}`).then(response =>{
             this.$store.dispatch('setStatus');
 

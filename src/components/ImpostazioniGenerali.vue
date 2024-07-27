@@ -76,10 +76,11 @@
       </b-form-group>
       <br/>
         <b-input-group prepend="Squadra" class="mt-3">
-          <b-form-input v-model=nome_squadra></b-form-input>
+          <b-form-input  v-model=nome_squadra></b-form-input>
           <b-input-group-append>
             <b-button variant="info" @click="aggiungi_squadra()">Aggiungi</b-button>
           </b-input-group-append>
+          <b-button @click="copyToClipboard">Copia URLs</b-button>
           <b-table ref="table"  :items="squadre" :fields="fields" >
             <template v-slot:cell(code)="data">
 
@@ -92,9 +93,9 @@
             </template>
             <template v-slot:cell(share)="data">
               <p>
-                <b-link :href="`https://${url}/personal/${data.item.code}`" target="_blank" class="text-dark"><font-awesome-icon :icon="[ 'fas', 'link' ]" size="2x"></font-awesome-icon></b-link>
-                <b-link :href="`whatsapp://send?text=https://${url}/personal/${data.item.code} Con questo link questa sera vedrai la situazione della tua rosa e dei tuoi crediti. ATTENZIONE: Il link è personale, non mostrarlo a gli altri partecipanti`"><font-awesome-icon :icon="[ 'fab', 'whatsapp-square' ]"  style="color: #25d366"  size="2x"></font-awesome-icon></b-link>
-                <b-link :href="`tg://msg?text=https://${url}/personal/${data.item.code} Con questo link questa sera vedrai la situazione della tua rosa e dei tuoi crediti. ATTENZIONE: Il link è personale, non mostrarlo a gli altri partecipanti`"><font-awesome-icon :icon="[ 'fab', 'telegram' ]" style="color: #0088cc" size="2x"></font-awesome-icon></b-link>
+                <b-link :href="`${protocol}//${url}/personal/${data.item.code}`" target="_blank" class="text-dark link-url"><font-awesome-icon :icon="[ 'fas', 'link' ]" size="2x"></font-awesome-icon></b-link>
+                <b-link :href="`whatsapp://send?text=${protocol}//${url}/personal/${data.item.code} Con questo link questa sera vedrai la situazione della tua rosa e dei tuoi crediti. ATTENZIONE: Il link è personale, non mostrarlo a gli altri partecipanti`"><font-awesome-icon :icon="[ 'fab', 'whatsapp-square' ]"  style="color: #25d366"  size="2x"></font-awesome-icon></b-link>
+                <b-link :href="`tg://msg?text=${protocol}//${url}/personal/${data.item.code} Con questo link questa sera vedrai la situazione della tua rosa e dei tuoi crediti. ATTENZIONE: Il link è personale, non mostrarlo a gli altri partecipanti`"><font-awesome-icon :icon="[ 'fab', 'telegram' ]" style="color: #0088cc" size="2x"></font-awesome-icon></b-link>
               </p>
 
             </template>
@@ -136,6 +137,7 @@ export default {
   data() {
     return {
       url: window.location.host,
+      protocol: this.$protocol,
       crediti: '',
       raggruppa_portieri: false,
       portieri: '',
@@ -158,8 +160,9 @@ export default {
   },
 
   methods: {
+    
     rename_squadra: function (index) {
-      axios.put(`${process.env.VUE_APP_API}squadre/${this.id_squadra_cancellazione}`, `nome=${this.new_nome_squadra}`).then(response => {
+      axios.put(this.$wsBaseUrl`squadre/${this.id_squadra_cancellazione}`, `nome=${this.new_nome_squadra}`).then(response => {
         this.$store.dispatch('setSquadre');
         this.new_nome_squadra="";
       }).catch(e=>{
@@ -167,19 +170,19 @@ export default {
     },
     cancella_squadra: function (index) {
       //console.log(idSquadra)
-      axios.delete(`${process.env.VUE_APP_API}squadre/${this.id_squadra_cancellazione}`).then((response) => {
+      axios.delete(this.$apiBaseUrl + `squadre/${this.id_squadra_cancellazione}`).then((response) => {
         this.$store.dispatch('setSquadre');
       })
 
     },
     aggiungi_squadra: function () {
-      axios.post(`${process.env.VUE_APP_API}squadre`, `nome=${this.nome_squadra}`).then(
+      axios.post(this.$apiBaseUrl + `squadre`, `nome=${this.nome_squadra}`).then(
           response => {
             this.$store.dispatch('setSquadre');
           }).catch(e => alert(e));
     },
     setConfig: function () {
-      axios.post(`${process.env.VUE_APP_API}configurazione`, `crediti_totali=${this.crediti}&raggruppa_portieri=${this.raggruppa_portieri}&portieri=${this.portieri}&difensori=${this.difensori}&centrocampisti=${this.centrocampisti}&attaccanti=${this.attaccanti}&crediti_nascosti=${this.crediti_visibili}`).then(
+      axios.post(this.$apiBaseUrl + `configurazione`, `crediti_totali=${this.crediti}&raggruppa_portieri=${this.raggruppa_portieri}&portieri=${this.portieri}&difensori=${this.difensori}&centrocampisti=${this.centrocampisti}&attaccanti=${this.attaccanti}&crediti_nascosti=${this.crediti_visibili}`).then(
           response => {
             this.$bvToast.toast('Configurazione salvata correttamente', {
               autoHideDelay: 2000,
@@ -192,7 +195,7 @@ export default {
     },
 
     getConfig: function () {
-      axios.get(`${process.env.VUE_APP_API}configurazione`).then(
+      axios.get(this.$apiBaseUrl + `configurazione`).then(
           response => {
             this.crediti=response.data.crediti_totali;
             this.portieri=response.data.portieri;
@@ -207,6 +210,45 @@ export default {
     setModal(id){
       this.id_squadra_cancellazione=id;
     },
+    extractTableData() {
+      // Seleziona tutte le righe della tabella, escludendo la prima riga (intestazioni)
+      const rows = document.querySelectorAll('table tr');
+      let resultText = '';
+
+      // Itera su ciascuna riga
+      rows.forEach(function(row) {
+        // Estrai l'elemento della prima colonna
+        var firstColumnElement = row.querySelector('td:first-child');
+        var firstColumnText = firstColumnElement ? firstColumnElement.textContent.trim() : '';
+
+        // Estrai l'elemento <a> nella quarta colonna
+        var linkElement = row.querySelector('td:nth-child(4) a');
+        var linkHref = linkElement ? linkElement.getAttribute('href') : '';
+
+        // Verifica che ci sia un testo nella prima colonna e un link href nella quarta colonna
+        if (firstColumnText && linkHref) {
+          // Format string come "first-column-text: link-url"
+          resultText += firstColumnText + ': ' + linkHref + '\n';
+        }
+      });
+
+      return resultText.trim();
+    },
+    async copyToClipboard() {
+      try {
+        // Ottieni i dati dalla funzione di estrazione
+        const textToCopy = this.extractTableData();
+
+        // Usa l'API Clipboard per copiare il testo negli appunti
+        await navigator.clipboard.writeText(textToCopy);
+
+        // Opzionale: Mostra un messaggio di successo
+        alert('URL Copiati');
+      } catch (err) {
+        // Opzionale: Gestisci gli errori
+        console.error('Failed to copy: ', err);
+      }
+    }
   },
   computed: {
     squadre: function (){
@@ -215,6 +257,7 @@ export default {
   },
   mounted() {
     this.getConfig();
+    
     this.$store.dispatch('setSquadre');
   }
 

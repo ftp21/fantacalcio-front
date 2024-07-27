@@ -101,7 +101,7 @@ export default {
   methods:{
     acquista:function (){
 
-      axios.post(`${process.env.VUE_APP_API}mercato/acquista/${this.id_giocatore_acquisto}`,
+      axios.post(this.$apiBaseUrl + `mercato/acquista/${this.id_giocatore_acquisto}`,
           `id_squadra=${this.squadra_acquisto.id}&crediti=${this.prezzo_acquisto}`).then(response => {
         this.showToast();
         this.$store.dispatch('setStatus');
@@ -134,14 +134,14 @@ export default {
       this.nome_giocatore_acquisto=nome;
     },
     getSvincolati(){
-      axios.get(`${process.env.VUE_APP_API}svincolati`).then(response=>{
+      axios.get(this.$apiBaseUrl + `svincolati`).then(response=>{
         // //console.log(response.data);
         this.svincolati = response.data;
       })
     }
   },
   mounted() {
-    // axios.get(`${process.env.VUE_APP_API}squadre`).then((response) => {
+    // axios.get(this.$apiBaseUrl + `squadre`).then((response) => {
     //   // //console.log(response.data);
     //   let squadre = response.data;
     //   // //console.log(squadre);

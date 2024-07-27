@@ -36,10 +36,10 @@ export default {
   },
   methods: {
     creaSquadra: function () {
-      axios.post(`${process.env.VUE_APP_API}squadre`, `nome=${this.addSquadra}`).then(
+      axios.post(this.$apiBaseUrl + `squadre`, `nome=${this.addSquadra}`).then(
           response => {
             //console.log(response);
-            axios.get(`${process.env.VUE_APP_API}squadre`).then(response=>{
+            axios.get(this.$apiBaseUrl + `squadre`).then(response=>{
               this.$store.commit('setSquadre',response.data);
             })
             this.addSquadra = '';
@@ -47,9 +47,9 @@ export default {
     },
     modificaSquadra: function (index, squadra) {
       let nuovoNome = prompt('Rinomina la tua squadra');
-      axios.put(`${process.env.VUE_APP_API}squadre`, `id_squadra=${squadra.id}&nome=${nuovoNome}`).then(response => {
+      axios.put(this.$apiBaseUrl + `squadre`, `id_squadra=${squadra.id}&nome=${nuovoNome}`).then(response => {
         //console.log(response);
-        axios.get(`${process.env.VUE_APP_API}squadre`).then(response=>{
+        axios.get(this.$apiBaseUrl + `squadre`).then(response=>{
           this.$store.commit('setSquadre',response.data);
         })
       }).catch(e=>{
@@ -60,9 +60,9 @@ export default {
       // //console.log(squadra.id)
       let idSquadra = parseInt(squadra.id);
       //console.log(idSquadra)
-      axios.delete(`${process.env.VUE_APP_API}squadre/${idSquadra}`).then((response) => {
+      axios.delete(this.$apiBaseUrl + `squadre/${idSquadra}`).then((response) => {
         //console.log(response)
-        axios.get(`${process.env.VUE_APP_API}squadre`).then(response=>{
+        axios.get(this.$apiBaseUrl + `squadre`).then(response=>{
           this.$store.commit('setSquadre',response.data);
         })
       })
@@ -75,7 +75,7 @@ export default {
     }
   },
   mounted() {
-    axios.get(`${process.env.VUE_APP_API}squadre`).then((response) => {
+    axios.get(this.$apiBaseUrl + `squadre`).then((response) => {
       // //console.log(response.data);
       this.$store.commit('setSquadre', response.data);
     });

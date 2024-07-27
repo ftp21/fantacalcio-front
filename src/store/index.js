@@ -24,6 +24,8 @@ export default new Vuex.Store({
       crediti_nascosti: "",
       reconnectError: false,
     },
+    apiBaseUrl: Vue.prototype.$apiBaseUrl,
+    wsBaseUrl: Vue.prototype.$wsBaseUrl,
   },
   mutations: {
     setStatus(state, payload){
@@ -51,7 +53,7 @@ export default new Vuex.Store({
     SOCKET_ONOPEN (state, event)  {
       Vue.prototype.$socket = event.currentTarget
       state.socket.isConnected = true
-      axios.get(`${process.env.VUE_APP_API}public`)
+      axios.get(state.apiBaseUrl + `public`)
     },
     SOCKET_ONCLOSE (state, event)  {
       state.socket.isConnected = false
@@ -78,14 +80,14 @@ export default new Vuex.Store({
 
   },
   actions: {
-    setSquadre({commit}){
-      axios.get(`${process.env.VUE_APP_API}squadre`).then((response)=>{
+    setSquadre({commit,state}){
+      axios.get(state.apiBaseUrl + `squadre`).then((response)=>{
         commit('setSquadre', response.data);
       })
     },
-    setStatus({commit}) {
+    setStatus({commit,state}) {
       // commit('setStatus', "response.data");
-      axios.get(`${process.env.VUE_APP_API}status`).then((response)=>{
+      axios.get(state.apiBaseUrl + `status`).then((response)=>{
         commit('setStatus', response.data);
       })
     },
